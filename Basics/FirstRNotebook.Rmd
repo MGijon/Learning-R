@@ -1,0 +1,375 @@
+---
+title: "PrincipalesObjetosR"
+output: html_notebook
+---
+
+# Vectores
+
+## Algunos comandos para generarlos.
+
+Los escalares son vectores en R de longitud 1. Para encadenar estos u otros objetos podemos usar el comando 'c'
+```{r include = TRUE}
+v <- c(1, 2, 3, 4, 5)
+v
+```
+
+Para generar sucesiones de vectores podemos utilizar los siguientes comandos:
+
+```{r include = TRUE}
+1:5
+```
+
+```{r include = TRUE}
+seq(3, 15, 3)
+```
+
+```{r include = TRUE}
+rep(c(5, 10), 4)
+```
+
+Observemos que con vectores se opera componete a componente.
+
+```{r include = TRUE}
+x <- c(1:10)
+5 + x
+```
+
+## Reciclaje
+
+Si usamos vectores que no alcanzan la dimensión adecuada para ciertas operaciones, R "recicla" el vector hasta llegar a la dimensión requerida.
+
+```{r include = TRUE}
+10 + c(1:3)
+```
+
+```{r inlcude = TRUE}
+c(1:3) + c(1:5)
+```
+
+Esto nos permite ahorrar código en determinadas situaciones, pero también puede enmascarar errores, ya que en el caso de que las dimensiones de los vectores sean una múltipla de la otra ni siquiera nos aparecerá un mensaje de error.
+
+```{r include = TRUE}
+c(1:6) + c(1:12)  # las longitudes son múltiplos un de la otra
+c(1:4) + c(1:7)
+```
+
+## Valores especiales
+
+Na: Not Avaiable
+NaN: Not a Number
+Inf: Infinity
+Null: se corresponde al vacío y es ignorado. Es útil a la hora de crear un objeto que completaremos poco a poco.
+
+```{r include = TRUE}
+x <- c(NA, NaN, Inf, NULL, 4, 0)
+1/x
+x - x
+1/x - (x - x)
+```
+
+## Coordenadas de un vector
+
+```{r include = TRUE}
+x <- c(1:10)^2
+x
+x[3]
+```
+
+Podemos usar corchetes para crear subvectores formados por las coordenadas de algún vector.
+
+```{r include = TRUE}
+x[c(1, 2, 3, 4)]
+```
+
+Con un signo negativo delante y por el mismo procedimiento eliminamos las coordenadas señaladas:
+
+```{r include = TRUE}
+x[-c(1, 2, 3, 4)]
+```
+
+Podemos utilizar los corchetes también para seleccionar los elementos que cumplen una determinada condición.
+
+```{r include = TRUE}
+x[x > 20]
+```
+
+El comando which se utiliza para saber los índices que cumplen una determinada condición.
+
+```{r include = TRUE}
+which(x > 20)
+```
+
+# Matrices
+
+Los vectores no son matrices con una fila o con una columna.
+
+A pesar de ser objetos similares, las matrices constan de dos atributos más: número de filas y número de columnas.
+
+Las matrices de declaran de la siguiente manera:
+
+```{r include = TRUE}
+matrix(1:3, nrow = 2, ncol = 3)
+```
+
+El primer argumento es un vector, estos conformarán los elementos de la matriz, el segundo el número de filas y el último el número de columnas.
+
+¿Qué ocurrirá al sumar un vector y una matriz?
+
+```{r include = TRUE}
+matrix(1:9, 3, 3)
+c(1:3)
+c(1:3) + matrix(1:9, 3, 3)
+```
+
+La matriz se considera como el vector resultante de aplicar sus columnas las unas sobre las otras. Se aplica el reciclaje si es necesario para sumar ambos vectores y el el vector resultante conforma una matriz con las filas y columnas de la original.
+
+Discurramos ahora cómo seleccionar elementos de la matriz.
+
+```{r include = TRUE}
+m <- matrix(5:8, 3, 4)
+m
+x[x > 7]          # elementos
+which(x > 7)      # posiciones
+```
+
+Usando corchetes es posible extraer submatrices, dentro del corchete indicamos filas y columnas que queremos extraer separadas por una coma. Si tenemos un signo negativo las eliminaremos. Si antes o después de la coma no escribimos nada, se tomarán todas las filas o columnas respectivamente.
+
+```{r include = TRUE}
+m <-  matrix(1:10, 2, 5)
+m
+m[1, 1]
+m[, 1]
+m[1, ]
+m[-1, -1]
+```
+
+## Formar matrices a partir de vectores
+
+Usamos los comandos cbind (cada vector será una columna de la matriz nueva) y rbind (idem con filas) para "pegar" vectores y conformar así matrices.
+
+```{r include = TRUE}
+y <- c(1:4)
+x <- c(5:8)
+y
+x
+```
+```{r include = TRUE}
+cbind(x, y)
+rbind(x, y)
+```
+
+## Aplicar funcionas a las filas y columnas de una matriz
+
+Usaremos el comando apply(), este tiene tres argumentos. El primero es la matriz sobre la que debemos actuar, el segundo es un 1 si queremos actuar sobre filas o un 2 para actuar sobre las culumnas. El último de los argumentos es el nombre de la función a aplicar a cada una de las filas/columnas.
+
+```{r include = TRUE}
+x <- matrix(1:9, 3, 3)
+x
+```
+
+```{r include = TRUE}
+mean(x)
+```
+
+```{r include = TRUE}
+apply(x, 1, mean) # actuamos sobre las filas de x
+apply(x, 2, mean) # actuamos sobre las columnas de x
+```
+
+Ahora ordenaremos de menor a mayor cada una de las filas de una matriz, observemos la dimensión de la matriz resultante.
+
+```{r include = TRUE}
+x
+apply(x, 1, sort) # actuamos sobre las filas de la matriz x
+```
+
+### Operaciones comunes con matrices:
+
+Producto Matricial:
+
+```{r include = TRUE}
+A <- matrix(1:9, 3, 3)
+B <- matrix(10:18, 3, 3)
+A
+B
+```
+
+```{r include = TRUE}
+A %*% B
+```
+
+Producto elemento a elemento:
+
+```{r include = TRUE}
+A * B
+```
+
+Transponer una matriz:
+
+```{r include = TRUE}
+t(A)
+```
+
+Calcular el determinante de una matriz:
+
+```{r include = TRUE}
+det(A)
+det(B)
+```
+
+Extraer la diagonal de una matriz:
+
+```{r include = TRUE}
+diag(A)
+```
+
+Resolver un sistema de ecuaciones lineales Ax = b:
+
+```{r include = TRUE}
+C <- matrix(c(2, 32, 32), 3, 3)
+b = matrix(1:3, 3, 1)
+b
+solve(C, b)
+```
+
+Calcular la matriz inversa:
+
+```{r include = TRUE}
+#solve(A)
+solve(C)
+```
+
+Cálculo de los autovalores y de los autovectores de una matriz:
+
+```{r include = TRUE}
+eigen(A)
+```
+
+# Listas
+
+Una lista es un vector de objetos de distinto tipo agrupados bajo una misma estructura. 
+
+Son importantes porque muchas funciones de R devuelven sus resultados en forma de lista.
+
+Se crean utilizando el comando list. Daremos nombre a cada uno de los elementos.
+
+```{r include = TRUE}
+lista <- list(Nombre = "Jose", Pareja = "Elena", no.hijos = 3, edades.hijos = c(1, 2, 4))
+```
+
+Podemos conocer la estructura de una lista utilizando el comando str():
+
+```{r include = TRUE}
+str(lista)
+```
+
+## Extraer elementos de una lista:
+
+Usaremos nombre_lista$nombre_objeto.
+
+```{r include = TRUE}
+lista$edades.hijos
+lista$Pareja
+```
+
+También podemos utilizar dobles corchetes y la posición en la lista del objeto a extraer:
+
+```{r include = TRUE}
+lista[[4]]
+lista[[2]]
+```
+
+Ejemplifiquemos ahora la diferencia entre el uso de corchete simple y doble con unos ejemplos:
+
+```{r include = TRUE}
+lista[1]
+lista[[1]]
+lista[1:3]
+lista[[1:3]]
+```
+
+# Data Frames
+
+Son estructuras de datos utilizadas por R para los ficheros de datos correspondientes a una serie de variables medidas en cada sujeto o unidad de estudio.
+
+Técnicamente son listas cuyos elementos son vectores de la misma longitud.
+
+Para crearlos se utiliza el comando data.frame. En el siguiente ejemplo asociaremos el peso en kilo-gramos de cuatro individuos a sus nombres. Los vectores empleados, observemos, tienen la misma longitud pero contienen tipos de datos distintos.
+
+```{r include = TRUE}
+pesos <- c(80.0, 54.5, 70, 89)
+nombres <- c("Manuel", "Raquel", "Miguel", "Boliche")
+fichero <- data.frame(Pesos = pesos, Individuos = nombres)
+fichero
+```
+
+Como son listas, aunque si bien es cierto que de un tipo especial, podemos aplicarles los comandos ya vistos para ellas.
+
+```{r include = TRUE}
+str(fichero)
+```
+
+```{r include = TRUE}
+fichero$Pesos
+fichero[[2]]
+```
+
+También, admite comandos aplicables a matrices, como por ejemplo:
+
+```{r include = TRUE}
+fichero[2, ]
+fichero[1, ]
+```
+
+### Aplicación de un comando a cada una de las variables de un data.frame:
+
+Para aplicar un comando a todas las variables de un fichero tenemos dos opciones fundamentalmente:
+
+  - lapply: aplicar una función a cada elemento de una lista, el resultado será otra lista.
+  - sapply: actúa igual, pero retorna un vector o una matriz.
+  
+Como ejemplo tomaremos los datos del fichero 'faithful', que contiene los datos del número de erupciones y el tiempo de espera entre ellas del geyser Old faithful en el parque de Yellowstone.
+```{r include = TRUE}
+sapply(faithful, summary)
+```
+
+```{r include = TRUE}
+lapply(faithful, summary)
+```
+
+
+# Factores
+
+Son las estructuras que se utilizan para almacenar las variables cualitativas en los análisis estadísticos. Podemos pensar en ellas como en vectores que además portan la información 'niveles', que contiene los diferentes elementos presentes en el vector.
+
+Para crearlos usamos el comando factor, al que le pasaremos un vector.
+
+```{r include = TRUE}
+lista <- c(2, 12, 12, 12, 12 , 1, 3, 4, 5, 2, 2, 2, 2, 4, 5, 6 ,8)
+factor(lista)
+```
+
+### Aplicar una función a cada nivel de un factor
+
+El fichero iris contiene los datos de lirios de Fisher.
+
+```{r include = TRUE}
+head(iris)
+```
+
+La última observación contiene la especie a la que pertenece la flor.
+
+```{r include = TRUE}
+iris$Species
+```
+
+Supongamos ahora que queremos calcular la media de las longitudes de los pétalos para cada una de las especies, (el conjunto de las tres son los factores). Podemos usar, por ejemplo, la función tapply, que necesitará tres argumentos: variable sobre la que aplicar la función, el factor para cada uno de cuyos niveles vamos a aplicar la función y la función a calcular como el último de las tres argumentos.
+
+```{r include = TRUE}
+tapply(iris$Petal.Length, iris$Species, mean)
+```
+
+
+# Referencias
+
+http://rpubs.com/joser/objetos
