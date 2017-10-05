@@ -67,6 +67,7 @@ states77 <- data.frame(state.x77, Regio = state.region)  # observemos así que e
   datos <- data.frame(nombres, matriz)
   datos
   datos <- data.frame(matriz, nombres)
+  
   datos
   # --------------------------------
   
@@ -129,3 +130,22 @@ round(cor(states77[, c("inco", "illi", "life")], use = "pairwise.complete.obs"),
 
 # 2g
 # --
+
+mean(subset(states77, regi == "Northeast")$inco)
+mean(subset(states77, as.numeric(regi) == 2)$inco)
+
+# with(data, expression)
+
+with(states77, mean(inco[regi == "North Central"]))
+with(subset(states77, regi == "West"), mean(inco))
+
+# soluciones mejores
+with(states77, by(inco, regi, mean))
+with(states77, tapply(inco, regi, mean))
+(tap <- with(states77, tapply(inco, regi, mean)))
+which.max(tap)
+max(tap)
+
+# Mejor:
+tap[which.max(tap)]
+
