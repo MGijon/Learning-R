@@ -19,6 +19,7 @@ str(immuno)
 head(immuno)
 summary(immuno)
 Label(immuno)
+class(immuno)             # "data.frame"
 
 # Manipulando el data.frame
 
@@ -63,3 +64,4 @@ Label(dat)
 ### =========================================================================================
 ### Importar datos de un archivo EXCEL
 ### =========================================================================================
+

@@ -14,6 +14,7 @@ load("Immunology.RData")
 load("Datasets_5/Immunology.RData")
 
 str(immuno)
+dim(immuno)
 attributes(immuno)
 summary(immuno)
 
@@ -91,9 +92,10 @@ hist(immuno, nclass = 15)
 
 histograma <- hist(immuno$lympho1, breaks = 20, plot = FALSE)
 histograma
+class(histograma)
 str(histograma)
-(hmax <- max(histograma$counts))
-(wmax <- which(histograma$counts == max(histograma$counts)))
+(hmax <- max(histograma$counts))    # máximo de los valores y
+(wmax <- which(histograma$counts == max(histograma$counts)))   # fijamos su posición en x??
 
 quartz(width = 8, height = 12)
 par(las = 1, font.lab = 4, font.axis = 2)
