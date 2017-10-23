@@ -1,11 +1,16 @@
 # Learning-R
 This code is just for my own learning purpose.
 
-- Computación en Estadística y Optimización: Máster en Estadística e Investigación Operativa (MESIO UPC-UB):
+***
+
+1. ** Computación en Estadística y Optimización** : Máster en Estadística e Investigación Operativa (MESIO UPC-UB) :
+
   Files and scripts from the study of the subject 'Computación en Estadística y Optimización' from the Master's degree in Statistics and Operations Research (MESIO UPC-UB). 
 
-- Graphics:
+2. **Graphics** :
+
   Graphics, learning and examples.
 
-- Basics:
+3. **Basics** :
+
   Basic R Programming learning and examples.
