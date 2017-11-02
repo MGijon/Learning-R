@@ -158,6 +158,26 @@ y
 # Add up the values in x within each subgroup defined by y:
 tapply(x, y, sum)
 
+# Example 2:
+# ---------
+
+data(iris)
+str(iris)                                        # Structure of the dataset
+
+mean(iris$Sepal.Length)                          # Sepal Length mean
+tapply(iris$Sepal.Length, iris$Species, mean)    # Sepal Lenght divided by species
+
+# Example 3:
+# ---------
+
+data(mtcars)
+str(mtcars)                                      # Structure of the dataset
+
+tapply(mtcars$mpg, list(mtcars$cyl, mtcars$am), mean)  # We are interested in seeing the avg mpg for the various transmission 
+                                                       # types and number of cylinders in car. This is nothing but avg mpg grouped
+                                                       # by transmission type and the number of cylinders in car.
+
+
 ### =========
 ### MNEMONICS
 ### =========
@@ -173,3 +193,4 @@ tapply(x, y, sum)
 
 
 # source : https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family
+# source Example 2, 3 TAPPLY: http://rstudio-pubs-static.s3.amazonaws.com/21347_418bc228038d4e94815018ad415bba49.html
