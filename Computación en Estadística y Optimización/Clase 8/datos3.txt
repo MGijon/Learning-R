@@ -1,0 +1,4 @@
+name    age city
+Laia    22  GIR
+Pedro   51  MAD
+Anna    32  BCN
