@@ -1,0 +1,4 @@
+name    age city
+Francis 22  LA
+Juan    46  MAD
+Jordi   23  BCN

@@ -1,0 +1,4 @@
+name    age city
+Oliver  37  NY
+Joan    41  BCN
+Paco    33  BCN
