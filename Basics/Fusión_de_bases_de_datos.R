@@ -1,19 +1,17 @@
-A <- data.frame(id = c("A", "B", "C", "D"), age = c(24, 25, 17, 19), height = c(1.8, 
-                                                                                1.9, 1.75, 1.65))
-A
+##################################
+##   FUSIÓN DE BASES DE DATOS   ##
+##################################
+
+## ========== ##
+## EJEMPLO 1: ##
+## ========== ##
+
+
+# Defino unos data.frames, todos ellos con la variable 'id' como variable identificadora
+A <- data.frame(id = c("A", "B", "C", "D"), age = c(24, 25, 17, 19), height = c(1.8, 1.9, 1.75, 1.65))
 B <- data.frame(gender = c("M", "M", "F", "F"), id = c("A", "B", "C", "D"))
-B
-
-C <- data.frame(id = c("A", "B", "C", "D"), math = c(6.5, 8.9, 7.4, 9.2), science = c(7.2, 
-                                                                                      8.4, 6.5, 8.7))
-C
-
-D <- data.frame(id = c("A", "B", "C", "D"), eyes = c("blue", "brown", "green", 
-                                                     "black"))
-
-D
-
-# Nótese que todos ellos tienen como variable identificadora id
+C <- data.frame(id = c("A", "B", "C", "D"), math = c(6.5, 8.9, 7.4, 9.2), science = c(7.2, 8.4, 6.5, 8.7))
+D <- data.frame(id = c("A", "B", "C", "D"), eyes = c("blue", "brown", "green", "black"))
 
 ## Uniendo los dataframes con merge
 AB <- merge(A, B)  # une A con B
@@ -23,7 +21,12 @@ ABCD  # resultado final
 
 Reduce(merge, list(A, B, C, D))
 
-####### otro ejemplo
+
+
+## ========== ##
+## EJEMPLO 2: ##
+## ========== ##
+
 
 
 authors <- data.frame(surname = I(c("Tukey", "Venables", "Tierney", "Ripley", 
