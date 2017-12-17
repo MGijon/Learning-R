@@ -2,6 +2,8 @@
 ##   FUSIÓN DE BASES DE DATOS   ##
 ##################################
 
+### FUSIÓN HORIZONTAL DE BASES DE DATOS:
+### ===================================
 
 ## ========== ##
 ## EJEMPLO 1: ##
@@ -22,7 +24,6 @@ ABCD  # resultado final
 
 # 'merge' funciona solamente con dos elementos, usando 'Reduce' podemos hacer la operación en un solo paso
 Reduce(merge, list(A, B, C, D))
-
 
 
 ## ========== ##
@@ -51,3 +52,32 @@ m3 <- merge(m2, year)
 
 # 'merge' funciona solamente con dos elementos, usando 'Reduce' podemos hacer la operación en un solo paso
 Reduce(merge, list(authors, books, edition, year))
+
+
+
+
+### FUSIÓN VERTICAL DE BASES DE DATOS:
+### =================================
+
+
+## ========== ##
+## EJEMPLO 3: ##
+## ========== ##
+
+
+# Tomamos como ejemplo los data.frames Cannabis, Grupo_control y XTC (consumidores de éxtasis) almacenados en sendos archivos de excell
+Cannabis <-  read.csv('Cannabis.csv')
+Grupo_control <-  read.csv('Controles.csv')
+
+# nos aseguramos de que los archivos se han cargado correctamente
+head(Cannabis)
+head(Grupo_control)
+
+# la fusión vertical tiene sentido en este caso ya que no queremos añadir información de nuevas variables sobre los sujetos estudiados,
+# lo que queremos es añadir nuevos sujetos al data.frame, crear uno que contenga las mediciones de las mismas variables para varios grupos de sujetos
+
+# con esta función procederemos como con 'merge' en cuanto a la forma de usarla con más de un data.set
+Datos <- rbind.data.frame(Cannabis, Grupo_control)
+head(Datos)
+summary(Datos)
+
