@@ -5,33 +5,17 @@
 #install.packages("XML")
 library(XML)
 
-
-url17ENG <- "http://www.livefutbol.com/calendario/eng-premier-league-2016-2017-spieltag/38/"
-liga17ENG <- readHTMLTable(url17ENG, header = TRUE)[[4]]
-head(liga17ENG)
-
-url17ITL <- "http://www.livefutbol.com/calendario/ita-serie-a-2016-2017-spieltag/38/"
-liga17ITL <- readHTMLTable(url17ITL, header = TRUE)[[4]]
-head(liga17ITL)
-
-url17GER <- "http://www.livefutbol.com/calendario/bundesliga-2016-2017-spieltag/34/"
-liga17GER <- readHTMLTable(url17GER, header = TRUE)[[4]]
-head(liga17GER)
-
-liga17ESP
-
-
 FUTBOL <- function(country, year = 2017){
   # -------------------------------------------------------
   # v1 : Rank
-  # v2 : será eliminada, no contiene información
+  # v2 : no contiene información
   # v3 : Team
   # v4 : Matches
   # V5 : Victories
   # v6 : Defeats
   # v7 : Ties 
   # v8 : Goals
-  # v9 : ?, por el momento la dejaré intacta
+  # v9 : ?
   # v10 : Score
   # -------------------------------------------------------
   paises_posibles <- c("Spain", "England", "Italy", "Germany") # para el mensaje de error o advertencia
@@ -51,18 +35,24 @@ FUTBOL <- function(country, year = 2017){
       # ENGLAND
       # -------
       if (country == paises_posibles[2]) {
-       
+        url17ENG <- "http://www.livefutbol.com/calendario/eng-premier-league-2016-2017-spieltag/38/"
+        liga17ENG <- readHTMLTable(url17ENG, header = TRUE)[[4]]
+        print(paste0('Champion in England in 2017: ', liga17ENG$V3[1]))
       }
       # ITALY
       # -----
       if (country == paises_posibles[3]) {
-        
+        url17ITL <- "http://www.livefutbol.com/calendario/ita-serie-a-2016-2017-spieltag/38/"
+        liga17ITL <- readHTMLTable(url17ITL, header = TRUE)[[4]]
+        print(paste0('Champion in Italy in 2017: ', liga17ITL$V3[1]))
       }
       # GERMANY
       # -------
       if (country == paises_posibles[4]) {
-        
-
+        url17GER <- "http://www.livefutbol.com/calendario/bundesliga-2016-2017-spieltag/34/"
+        liga17GER <- readHTMLTable(url17GER, header = TRUE)[[4]]
+        head(liga17GER)
+        print(paste0('Champion in Germany in 2017: ', liga17GER$V3[1]))
       }
     }
     else {
@@ -72,3 +62,6 @@ FUTBOL <- function(country, year = 2017){
 }
 
 FUTBOL('Spain', 2017)
+FUTBOL('England')
+FUTBOL('Italy')
+FUTBOL('Germany')
