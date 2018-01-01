@@ -56,7 +56,40 @@ FUTBOL <- function(country, year = 2017){
       }
     }
     else {
-      print('casi capullo')
+      ############
+      
+      # SPAIN
+      # -----
+      if (country == paises_posibles[1]) {
+        url <- paste0("http://www.livefutbol.com/calendario/esp-primera-division-", toString(year), "-", toString(year + 1), "-spieltag/38/")
+        liga <- readHTMLTable(url, header = TRUE)[[4]]
+        print(paste0('Champion in Spain in ', toString(year), ': ', liga$V3[1]))
+      }
+      # ENGLAND
+      # -------
+      if (country == paises_posibles[2]) {
+        url <- paste0("http://www.livefutbol.com/calendario/eng-premier-league-", toString(year), "-", toString(year + 1), "-spieltag/38/")
+        liga <- readHTMLTable(url, header = TRUE)[[4]]
+        print(paste0('Champion in England in ', toString(year), ': ',liga$V3[1]))
+        print(head(liga))
+      }
+      # ITALY
+      # -----
+      if (country == paises_posibles[3]) {
+        url17ITL <- "http://www.livefutbol.com/calendario/ita-serie-a-2016-2017-spieltag/38/"
+        liga17ITL <- readHTMLTable(url17ITL, header = TRUE)[[4]]
+        print(paste0('Champion in Italy in ', toString(year), ': ',liga17ITL$V3[1]))
+      }
+      # GERMANY
+      # -------
+      if (country == paises_posibles[4]) {
+        url17GER <- "http://www.livefutbol.com/calendario/bundesliga-2016-2017-spieltag/34/"
+        liga17GER <- readHTMLTable(url17GER, header = TRUE)[[4]]
+        head(liga17GER)
+        print(paste0('Champion in Germany in ', toString(year), ': ',liga17GER$V3[1]))
+      }
+      
+      ############
     }
   }
 }
@@ -66,4 +99,12 @@ FUTBOL('England')
 FUTBOL('Italy')
 FUTBOL('Germany')
 FUTBOL('otro')
+
+FUTBOL('Spain', 2001)
+FUTBOL('Spain', 2006)
+FUTBOL('Spain', 2015)
+
+FUTBOL('England', 2016)
+FUTBOL('England', 2004)
+FUTBOL('England', 1990)
 
