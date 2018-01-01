@@ -71,14 +71,19 @@ FUTBOL <- function(country, year = 2017){
         url <- paste0("http://www.livefutbol.com/calendario/eng-premier-league-", toString(year), "-", toString(year + 1), "-spieltag/38/")
         liga <- readHTMLTable(url, header = TRUE)[[4]]
         print(paste0('Champion in England in ', toString(year), ': ',liga$V3[1]))
-        print(head(liga))
       }
       # ITALY
       # -----
       if (country == paises_posibles[3]) {
-        url17ITL <- "http://www.livefutbol.com/calendario/ita-serie-a-2016-2017-spieltag/38/"
-        liga17ITL <- readHTMLTable(url17ITL, header = TRUE)[[4]]
-        print(paste0('Champion in Italy in ', toString(year), ': ',liga17ITL$V3[1]))
+        url <- paste0("http://www.livefutbol.com/calendario/ita-serie-a-", toString(year), "-", toString(year + 1), "-spieltag/38/")
+        liga <- readHTMLTable(url, header = TRUE)[[4]]
+        # hasta el 2004hay datos de la liga italiana, antes solo del vencendor de la Champions League
+        if (year >= 2004){
+          print(paste0('Champion in Italy in ', toString(year), ': ',liga$V3[1]))
+        }
+        else {
+          print(paste0('Champion in Italy in ', toString(year), ': ',liga[1, -1]))
+        }
       }
       # GERMANY
       # -------
@@ -108,3 +113,10 @@ FUTBOL('England', 2016)
 FUTBOL('England', 2004)
 FUTBOL('England', 1990)
 
+FUTBOL('Italy', 2012)
+FUTBOL('Italy', 1999)
+FUTBOL('Italy', 2000)
+FUTBOL('Italy', 2001)
+FUTBOL('Italy', 2002)
+FUTBOL('Italy', 2003)
+FUTBOL('Italy', 2004)
