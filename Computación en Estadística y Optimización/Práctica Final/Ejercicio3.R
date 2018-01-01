@@ -65,3 +65,5 @@ FUTBOL('Spain', 2017)
 FUTBOL('England')
 FUTBOL('Italy')
 FUTBOL('Germany')
+FUTBOL('otro')
+
