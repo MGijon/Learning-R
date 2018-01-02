@@ -51,7 +51,6 @@ FUTBOL <- function(country, year = 2017){
       if (country == paises_posibles[4]) {
         url17GER <- "http://www.livefutbol.com/calendario/bundesliga-2016-2017-spieltag/34/"
         liga17GER <- readHTMLTable(url17GER, header = TRUE)[[4]]
-        head(liga17GER)
         print(paste0('Champion in Germany in 2017: ', liga17GER$V3[1]))
       }
     }
@@ -77,21 +76,19 @@ FUTBOL <- function(country, year = 2017){
       if (country == paises_posibles[3]) {
         url <- paste0("http://www.livefutbol.com/calendario/ita-serie-a-", toString(year), "-", toString(year + 1), "-spieltag/38/")
         liga <- readHTMLTable(url, header = TRUE)[[4]]
-        # hasta el 2004hay datos de la liga italiana, antes solo del vencendor de la Champions League
+        # hasta el 2004 hay datos de la liga italiana, antes solo del vencendor de la Champions League
         if (year >= 2004){
           print(paste0('Champion in Italy in ', toString(year), ': ',liga$V3[1]))
         }
         else {
-          print(paste0('Champion in Italy in ', toString(year), ': ',liga[1, -1]))
+          #print(paste0('Champion in Italy in ', toString(year), ': ',liga[1, -1]))
+          print('No hay datos sobre la liga italiana a partir del 2004.')
         }
       }
       # GERMANY
       # -------
       if (country == paises_posibles[4]) {
-        url17GER <- "http://www.livefutbol.com/calendario/bundesliga-2016-2017-spieltag/34/"
-        liga17GER <- readHTMLTable(url17GER, header = TRUE)[[4]]
-        head(liga17GER)
-        print(paste0('Champion in Germany in ', toString(year), ': ',liga17GER$V3[1]))
+        print('No hay datos sobre la liga alemana a partir del 2017.')
       }
       
       ############
@@ -110,6 +107,7 @@ FUTBOL('Spain', 2006)
 FUTBOL('Spain', 2015)
 
 FUTBOL('England', 2016)
+
 FUTBOL('England', 2004)
 FUTBOL('England', 1990)
 
@@ -119,4 +117,10 @@ FUTBOL('Italy', 2000)
 FUTBOL('Italy', 2001)
 FUTBOL('Italy', 2002)
 FUTBOL('Italy', 2003)
-FUTBOL('Italy', 2004)
+FUTBOL('Italy', 2004) 
+
+FUTBOL('Germany', 2002)
+FUTBOL('Germany', 2010)
+FUTBOL('Germany', 1999)
+FUTBOL('Germany', 2016)
+
