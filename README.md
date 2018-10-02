@@ -18,3 +18,7 @@ This code is just for my own learning purpose.
 4. **Temporal series**:
 
   Temporal series in R.
+  
+  2. **Introducción a la Bioinformática:** Máster en Estadística e Investigación Operativa (MESIO UPC-UB) :
+  
+  Files and scripts from the study of the subject 'Introducción a la Bioinformática' from the Master's degree in Statistics and Operations Research (MESIO UPC-UB). 
